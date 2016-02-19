@@ -22,4 +22,10 @@ public class XBoxController
         float ry = Input.GetAxis("P" + playerNumber + "RY");
         return new Vector2(rx, ry);
     }
+
+    public bool RightTrigger()
+    {
+        float rt = Input.GetAxis("P" + playerNumber + "RT");
+        return rt < -0.5f;
+    }
 }
