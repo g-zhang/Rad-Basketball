@@ -20,6 +20,9 @@ public class SceneController : MonoBehaviour
 	private RaycastHit2D _lastControllerColliderHit;
 	private Vector3 _velocity;
 
+	public bool xboxControl;
+	public int playerNumber;
+	private XBoxController xbox;
 
 	void Awake()
 	{
@@ -30,6 +33,8 @@ public class SceneController : MonoBehaviour
 		_controller.onControllerCollidedEvent += onControllerCollider;
 		_controller.onTriggerEnterEvent += onTriggerEnterEvent;
 		_controller.onTriggerExitEvent += onTriggerExitEvent;
+
+		xbox = new XBoxController(playerNumber);
 	}
 
 
@@ -92,6 +97,10 @@ public class SceneController : MonoBehaviour
 //				_animator.Play( Animator.StringToHash( "Idle" ) );
 		}
 
+		if (xboxControl)
+		{
+			normalizedHorizontalSpeed = xbox.LeftStick().x;
+		}
 
 		// we can only jump whilst grounded
 		if( _controller.isGrounded && Input.GetKeyDown( KeyCode.UpArrow ) )
@@ -100,6 +109,14 @@ public class SceneController : MonoBehaviour
 //			_animator.Play( Animator.StringToHash( "Jump" ) );
 		}
 
+		if (xboxControl)
+		{
+			float flick = xbox.Flick();
+			if (_controller.isGrounded && flick > 0)
+			{
+			_velocity.y = Mathf.Sqrt(flick * jumpHeight * -gravity );
+			}
+		}
 
 		// apply horizontal speed smoothing it. dont really do this with Lerp. Use SmoothDamp or something that provides more control
 		var smoothedMovementFactor = _controller.isGrounded ? groundDamping : inAirDamping; // how fast do we change direction?
