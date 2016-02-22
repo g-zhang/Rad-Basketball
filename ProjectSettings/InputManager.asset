@@ -340,7 +340,7 @@ InputManager:
     invert: 1
     type: 2
     axis: 9
-    joyNum: 4
+    joyNum: 1
   - serializedVersion: 3
     m_Name: P2RT
     descriptiveName: 
@@ -356,7 +356,7 @@ InputManager:
     invert: 1
     type: 2
     axis: 9
-    joyNum: 4
+    joyNum: 2
   - serializedVersion: 3
     m_Name: P3RT
     descriptiveName: 
@@ -372,7 +372,7 @@ InputManager:
     invert: 1
     type: 2
     axis: 9
-    joyNum: 4
+    joyNum: 3
   - serializedVersion: 3
     m_Name: P4RT
     descriptiveName: 
