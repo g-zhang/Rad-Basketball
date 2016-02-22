@@ -4,11 +4,13 @@ using System.Collections;
 public class HandController : MonoBehaviour {
 
     XBoxController controls = new XBoxController(1);
+    Vector2 rstickDir = Vector2.zero;
 
     public float HandMoveDistanceMult = .5f;
 
     [Header("Status")]
     public bool hasBall = false;
+    public GameObject ball = null;
 
     public GameObject parentPlayerObj;
     Vector3 defaultPos;
@@ -35,17 +37,38 @@ public class HandController : MonoBehaviour {
 
     void getHandPosition()
     {
-        //Vector2 dir = GetRadius(Vector2.zero, controls.RightStick(), 1f) * HandMoveDistanceMult;
-        Vector2 dir = new Vector2(1, 0) * HandMoveDistanceMult;
+        Vector2 dir = GetRadius(Vector2.zero, controls.RightStick(), 1f) * HandMoveDistanceMult;
+        //Vector2 dir = new Vector2(1, 0) * HandMoveDistanceMult;
+        rstickDir = dir;
         Debug.DrawRay(gameObject.transform.position, dir, Color.cyan);
+        
 
         if (dir.magnitude < .25f)
         {
-            gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, parentPlayerObj.transform.position + new Vector3(dir.x, dir.y, -1f), .25f);
+            gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, parentPlayerObj.transform.position + new Vector3(dir.x, dir.y, 0), .25f);
         }
         else
         {
-            gameObject.transform.position = parentPlayerObj.transform.position + new Vector3(dir.x, dir.y, -1f);
+            gameObject.transform.position = parentPlayerObj.transform.position + new Vector3(dir.x, dir.y, 0f);
+        }
+    }
+
+    void holdBall()
+    {
+        if(hasBall)
+        {
+            Debug.DrawRay(ball.transform.position, Vector3.up * 5f, Color.blue);
+            ball.transform.position = gameObject.transform.position;
+        }
+    }
+
+    void throwBall(Vector2 dir)
+    {
+        if(hasBall)
+        {
+            hasBall = false;
+            ball.GetComponent<Rigidbody2D>().velocity = dir;
+            ball = null;
         }
     }
 	
@@ -53,11 +76,21 @@ public class HandController : MonoBehaviour {
 	void Update () {
         getHandPosition();
 
+        holdBall();
 
+        //temp way to let go of the ball until we decide on how to throw the ball and other physics
+        if(Input.GetKeyDown(KeyCode.Joystick1Button5))
+        {
+            throwBall(rstickDir * 10f);
+        }
 	}
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        print(other.tag);
+        if(other.tag == "Ball")
+        {
+            hasBall = true;
+            ball = other.gameObject;
+        }
     }
 }
