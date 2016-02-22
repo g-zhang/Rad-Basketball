@@ -38,7 +38,7 @@ public class XBoxController
 
     public float Flick()
     {
-        float magnitude = RightStick().magnitude;
+        float magnitude = LeftStick().y;
 
         if (magnitude < 0.2f)
         {
