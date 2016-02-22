@@ -17,7 +17,13 @@ public class Hoop : MonoBehaviour {
 		if (col.gameObject.tag == "Ball") {
 			float ball_ypos = col.gameObject.transform.position.y;
 			if (ball_ypos > gameObject.transform.position.y) {
-				print ("scored!");
+				if (gameObject.tag == "Red_Hoop") {
+					print ("Red was scored on");
+					ScoreKeeper.instance.BlueScored ();
+				} else if (gameObject.tag == "Blue_Hoop"){
+					print ("Blue was scored on");
+					ScoreKeeper.instance.RedScored ();
+				}
 			}
 		}
 	}
