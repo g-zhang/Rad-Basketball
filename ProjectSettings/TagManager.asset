@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ball
+  - Blue_Hoop
+  - Red_Hoop
+  - Hand
   layers:
   - Default
   - TransparentFX
