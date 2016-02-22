@@ -58,7 +58,11 @@ public class HandController : MonoBehaviour {
         if(hasBall)
         {
             Debug.DrawRay(ball.transform.position, Vector3.up * 5f, Color.blue);
+            Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Ball"), true);
             ball.transform.position = gameObject.transform.position;
+        } else
+        {
+            Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Ball"), false);
         }
     }
 
