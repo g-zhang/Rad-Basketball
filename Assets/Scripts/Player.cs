@@ -6,24 +6,47 @@ public class Player : MonoBehaviour
 
     private XBoxController controller;
 
+    private int groundLayerMask;
+
+    private Rigidbody2D body;
+
     void Awake()
     {
         controller = new XBoxController(number);
+
+        groundLayerMask = LayerMask.GetMask("Ground");
+
+        body = GetComponent<Rigidbody2D>();
     }
 
     void FixedUpdate()
     {
-        transform.position = transform.position + (Vector3) (0.3f * controller.LeftStick());
+        Vector2 velocity = body.velocity;
 
         float power = controller.Flick();
-        if (power > 0.0f)
+        if (Grounded() && power > 0.0f)
         {
-            print("Flick " + power);
+            velocity.y = power;
         }
 
-        if (controller.RightTrigger())
+        float lerpScale = 0.05f;
+        if (Grounded())
         {
-            print("Right trigger");
+            lerpScale = 0.2f;
         }
+
+        velocity.x = Mathf.Lerp(velocity.x, 10 * controller.LeftStick().x, lerpScale);
+
+        body.velocity = velocity;
+    }
+
+    bool Grounded()
+    {
+        return Physics2D.Raycast(transform.position, Vector2.down, 0.5f, groundLayerMask);
+    }
+
+    public XBoxController GetXBoxController()
+    {
+        return controller;
     }
 }

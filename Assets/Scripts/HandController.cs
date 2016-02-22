@@ -32,7 +32,7 @@ public class HandController : MonoBehaviour {
     void Start () {
         defaultPos = gameObject.transform.localPosition;
         gameObject.transform.position = parentPlayerObj.transform.position + new Vector3(0, 0, 0);
-        controls = parentPlayerObj.GetComponent<SceneController>().GetXBoxController();
+        controls = parentPlayerObj.GetComponent<Player>().GetXBoxController();
     }
 
     void getHandPosition()

@@ -9,7 +9,7 @@ public class XBoxController
     // Waiting to zero before next flick
     private bool flicked = false;
 
-    public float flickScale = 0.04f;
+    public float flickScale = 0.23f;
 
     public XBoxController(int playerNumber)
     {
