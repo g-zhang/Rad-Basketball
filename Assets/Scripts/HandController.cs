@@ -79,7 +79,7 @@ public class HandController : MonoBehaviour {
         holdBall();
 
         //temp way to let go of the ball until we decide on how to throw the ball and other physics
-        if(Input.GetKeyDown(KeyCode.Joystick1Button5))
+        if(controls.RightTrigger())
         {
             throwBall(rstickDir * 10f);
         }
