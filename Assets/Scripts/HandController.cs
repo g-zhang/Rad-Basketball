@@ -35,7 +35,8 @@ public class HandController : MonoBehaviour {
 
     void getHandPosition()
     {
-        Vector2 dir = GetRadius(Vector2.zero, controls.RightStick(), 1f) * HandMoveDistanceMult;
+        //Vector2 dir = GetRadius(Vector2.zero, controls.RightStick(), 1f) * HandMoveDistanceMult;
+        Vector2 dir = new Vector2(1, 0) * HandMoveDistanceMult;
         Debug.DrawRay(gameObject.transform.position, dir, Color.cyan);
 
         if (dir.magnitude < .25f)
