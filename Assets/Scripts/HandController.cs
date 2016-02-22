@@ -3,7 +3,7 @@ using System.Collections;
 
 public class HandController : MonoBehaviour {
 
-    XBoxController controls = new XBoxController(1);
+    XBoxController controls;
     Vector2 rstickDir = Vector2.zero;
 
     public float HandMoveDistanceMult = .5f;
@@ -31,8 +31,8 @@ public class HandController : MonoBehaviour {
     // Use this for initialization
     void Start () {
         defaultPos = gameObject.transform.localPosition;
-        gameObject.transform.position = parentPlayerObj.transform.position + new Vector3(0, 0, -1f);
-
+        gameObject.transform.position = parentPlayerObj.transform.position + new Vector3(0, 0, 0);
+        controls = parentPlayerObj.GetComponent<SceneController>().GetXBoxController();
     }
 
     void getHandPosition()
