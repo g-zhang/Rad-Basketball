@@ -139,4 +139,8 @@ public class SceneController : MonoBehaviour
 		_velocity = _controller.velocity;
 	}
 
+	public XBoxController GetXBoxController()
+	{
+		return xbox;
+	}
 }
