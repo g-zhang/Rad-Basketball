@@ -14,15 +14,14 @@ public class Hoop : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D (Collider2D col) {
+        print(col);
 		if (col.gameObject.tag == "Ball") {
 			float ball_ypos = col.gameObject.transform.position.y;
 			if (ball_ypos > gameObject.transform.position.y) {
 				if (gameObject.tag == "Red_Hoop") {
-					print ("Red was scored on");
-					ScoreKeeper.instance.BlueScored ();
-				} else if (gameObject.tag == "Blue_Hoop"){
-					print ("Blue was scored on");
 					ScoreKeeper.instance.RedScored ();
+				} else if (gameObject.tag == "Blue_Hoop"){
+					ScoreKeeper.instance.BlueScored ();
 				}
 			}
 		}

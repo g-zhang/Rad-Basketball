@@ -6,8 +6,8 @@ public class ScoreKeeper : MonoBehaviour {
 
 	public static ScoreKeeper instance;
 
-	int blue_score = 0;
-	int red_score = 0;
+	private int blue_score;
+	private int red_score;
 
 	public Text blue_score_text;
 	public Text red_score_text;
@@ -15,6 +15,8 @@ public class ScoreKeeper : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		instance = this;
+		blue_score = 0;
+		red_score = 0;
 	}
 	
 	// Update is called once per frame
@@ -24,10 +26,11 @@ public class ScoreKeeper : MonoBehaviour {
 	}
 
 	public void BlueScored() {
-		blue_score++;
+		blue_score = blue_score + 1;
 	}
 
 	public void RedScored() {
-		red_score++;
+		red_score = red_score + 1;
+		print("RED!" + red_score);
 	}
 }
