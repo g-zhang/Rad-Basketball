@@ -360,10 +360,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 129836, guid: 7ad0c2818cf424d3dbabbabf4adf64d6, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7ad0c2818cf424d3dbabbabf4adf64d6, type: 2}
   m_IsPrefabParent: 0
@@ -481,6 +477,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 708223686}
   - 212: {fileID: 708223685}
+  - 95: {fileID: 708223687}
   m_Layer: 0
   m_Name: Eye_Blue
   m_TagString: Untagged
@@ -530,6 +527,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 13
+--- !u!95 &708223687
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 708223684}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6cd2f8df0adda46c895f85b2ba92a72a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &720733107
 GameObject:
   m_ObjectHideFlags: 0
