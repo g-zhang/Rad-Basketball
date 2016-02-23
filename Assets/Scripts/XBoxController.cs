@@ -36,7 +36,7 @@ public class XBoxController
         return rt < -0.5f;
     }
 
-    public float Flick()
+    public Vector2 Flick()
     {
         float magnitude = LeftStick().y;
 
@@ -44,18 +44,18 @@ public class XBoxController
         {
             flicked = false;
             zeroTime = Time.time;
-            return 0.0f;
+            return Vector2.zero;
         }
         else if (!flicked && magnitude > 0.9f)
         {
             flicked = true;
             float duration = Time.time - zeroTime;
             float power = 1.0f / duration;
-            return power * flickScale;
+            return power * flickScale * LeftStick().normalized;
         }
         else
         {
-            return 0.0f;
+            return Vector2.zero;
         }
     }
 }

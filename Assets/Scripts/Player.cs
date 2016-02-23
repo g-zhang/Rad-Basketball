@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     private XBoxController controller;
 
     private int groundLayerMask;
+    private int wallLayerMask;
 
     private Rigidbody2D body;
 
@@ -15,6 +16,7 @@ public class Player : MonoBehaviour
         controller = new XBoxController(number);
 
         groundLayerMask = LayerMask.GetMask("Ground");
+        wallLayerMask = LayerMask.GetMask("Wall");
 
         body = GetComponent<Rigidbody2D>();
     }
@@ -23,10 +25,31 @@ public class Player : MonoBehaviour
     {
         Vector2 velocity = body.velocity;
 
-        float power = controller.Flick();
-        if (Grounded() && power > 0.0f)
+        Vector2 flick = controller.Flick();
+        if (flick != Vector2.zero)
         {
-            velocity.y = power;
+            bool verticalFlick = Mathf.Abs(flick.y) >= Mathf.Abs(flick.x);
+
+            if (Grounded() && flick.y > 0)
+            {
+                velocity.y = flick.magnitude;
+            }
+
+            float angle = Vector2.Angle(new Vector2(Mathf.Abs(flick.x), Mathf.Abs(flick.y)), Vector2.up);
+
+            if (angle > 20f)
+            {
+                bool rightFlick = flick.x > 0;
+
+                if (rightFlick && Walled(Vector2.left))
+                {
+                    velocity = flick * 0.85f;
+                }
+                else if (!rightFlick && Walled(Vector2.right))
+                {
+                    velocity = flick * 0.85f;
+                }
+            }
         }
 
         float lerpScale = 0.05f;
@@ -43,6 +66,11 @@ public class Player : MonoBehaviour
     bool Grounded()
     {
         return Physics2D.Raycast(transform.position, Vector2.down, 0.5f, groundLayerMask);
+    }
+
+    private bool Walled(Vector2 direction)
+    {
+        return Physics2D.Raycast(transform.position, direction, 0.6f, groundLayerMask);
     }
 
     public XBoxController GetXBoxController()
