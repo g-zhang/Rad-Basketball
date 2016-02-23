@@ -321,6 +321,52 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 318284065}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &386673170
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 438318, guid: 7ad0c2818cf424d3dbabbabf4adf64d6, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -2.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 438318, guid: 7ad0c2818cf424d3dbabbabf4adf64d6, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 3.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 438318, guid: 7ad0c2818cf424d3dbabbabf4adf64d6, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 438318, guid: 7ad0c2818cf424d3dbabbabf4adf64d6, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071066
+      objectReference: {fileID: 0}
+    - target: {fileID: 438318, guid: 7ad0c2818cf424d3dbabbabf4adf64d6, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 438318, guid: 7ad0c2818cf424d3dbabbabf4adf64d6, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 438318, guid: 7ad0c2818cf424d3dbabbabf4adf64d6, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: -0.70710695
+      objectReference: {fileID: 0}
+    - target: {fileID: 438318, guid: 7ad0c2818cf424d3dbabbabf4adf64d6, type: 2}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 129836, guid: 7ad0c2818cf424d3dbabbabf4adf64d6, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 7ad0c2818cf424d3dbabbabf4adf64d6, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &386760422
 GameObject:
   m_ObjectHideFlags: 0
@@ -1148,7 +1194,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!50 &1625522585
 Rigidbody2D:
   serializedVersion: 2
@@ -1248,6 +1294,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
+  explosion: {fileID: 0}
 --- !u!1 &1902871516
 GameObject:
   m_ObjectHideFlags: 0

@@ -98,7 +98,6 @@ public class HandController : MonoBehaviour {
             if (controls.RightTrigger())
             {
                 shotCharge += Time.deltaTime;
-                print("hello");
             }
             else if(shotCharge > 0)
                 throwBall(rstickDir);
