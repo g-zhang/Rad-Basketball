@@ -11,7 +11,7 @@ public class HandController : MonoBehaviour {
     [Header("Status")]
     public bool hasBall = false;
     public GameObject ball = null;
-
+    public float shotCharge = 0;
     public GameObject parentPlayerObj;
     Vector3 defaultPos;
 
@@ -68,24 +68,25 @@ public class HandController : MonoBehaviour {
 
     void throwBall(Vector2 dir)
     {
-        if(hasBall)
-        {
-            hasBall = false;
-            ball.GetComponent<Rigidbody2D>().velocity = dir;
-            ball = null;
-        }
+        float magnitude = shotCharge > 1 ? 30 : shotCharge * 30;
+        shotCharge = 0;
+        hasBall = false;
+        ball.GetComponent<Rigidbody2D>().velocity = dir.normalized * magnitude;
+        ball = null;
     }
 	
 	// Update is called once per frame
 	void Update () {
         getHandPosition();
-
         holdBall();
 
         //temp way to let go of the ball until we decide on how to throw the ball and other physics
-        if(controls.RightTrigger())
+        if (hasBall)
         {
-            throwBall(rstickDir * 10f);
+            if (controls.RightTrigger())
+                shotCharge += Time.deltaTime;
+            else if(shotCharge > 0)
+                throwBall(rstickDir);
         }
 	}
 
