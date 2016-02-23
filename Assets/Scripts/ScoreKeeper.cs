@@ -26,11 +26,12 @@ public class ScoreKeeper : MonoBehaviour {
 	}
 
 	public void BlueScored() {
+		print ("bluescore");
 		blue_score = blue_score + 1;
 	}
 
 	public void RedScored() {
+		print ("redscore");
 		red_score = red_score + 1;
-		print("RED!" + red_score);
 	}
 }
