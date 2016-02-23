@@ -14,8 +14,16 @@ public class BallController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		    updateTrail();
-	}
+		updateTrail();
+        if (owner)
+        {
+            Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Ball"), true);
+        }
+        else
+        {
+            Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Ball"), false);
+        }
+    }
 
 	void OnCollisionEnter2D(Collision2D coll) {
 		// Instantiate(explosion, transform.position, Quaternion.identity);
