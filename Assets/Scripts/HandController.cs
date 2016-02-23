@@ -13,6 +13,7 @@ public class HandController : MonoBehaviour {
     public GameObject ball = null;
     public float shotCharge = 0;
     public GameObject parentPlayerObj;
+    public float handCollCooldown = 0f;
     Vector3 defaultPos;
 
     // VJR(Virtual Joystick Region) Sample 
@@ -68,15 +69,26 @@ public class HandController : MonoBehaviour {
 
     void throwBall(Vector2 dir)
     {
+        gameObject.GetComponent<Collider2D>().enabled = false;
         float magnitude = shotCharge > 1 ? 30 : shotCharge * 30;
         shotCharge = 0;
         hasBall = false;
         ball.GetComponent<Rigidbody2D>().velocity = dir.normalized * magnitude;
+        ball.GetComponent<BallController>().owner = null;
         ball = null;
+        handCollCooldown = .1f;
     }
 	
 	// Update is called once per frame
 	void Update () {
+        if(handCollCooldown > 0)
+        {
+            handCollCooldown -= Time.deltaTime;
+        } else
+        {
+            gameObject.GetComponent<Collider2D>().enabled = true;
+        }
+
         getHandPosition();
         holdBall();
 
@@ -84,7 +96,9 @@ public class HandController : MonoBehaviour {
         if (hasBall)
         {
             if (controls.RightTrigger())
+            {
                 shotCharge += Time.deltaTime;
+            }
             else if(shotCharge > 0)
                 throwBall(rstickDir);
         }
@@ -94,8 +108,15 @@ public class HandController : MonoBehaviour {
     {
         if(other.tag == "Ball")
         {
-            hasBall = true;
             ball = other.gameObject;
+            if(ball.GetComponent<BallController>().owner != null && ball.GetComponent<BallController>().owner != this.gameObject)
+            {
+                HandController prevowner = ball.GetComponent<BallController>().owner.GetComponent<HandController>();
+                prevowner.hasBall = false;
+                prevowner.ball = null;
+            }
+            ball.GetComponent<BallController>().owner = this.gameObject;
+            hasBall = true;
         }
     }
 }
