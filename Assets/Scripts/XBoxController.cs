@@ -12,6 +12,7 @@ public class XBoxController
     private bool flicked = false;
 
     public float flickScale = 0.23f;
+    public bool useKeyboard = false;
 
     public XBoxController(int playerNumber)
     {
@@ -26,11 +27,39 @@ public class XBoxController
 
     public Vector2 LeftStick()
     {
-        if(inputDevice == null)
+        if(!useKeyboard) //use xbox controller
         {
-            return Vector2.zero;
+            float lx = 0f;
+            float ly = 0f;
+            if (inputDevice != null)
+            {
+                lx = inputDevice.Direction.X;
+                ly = inputDevice.Direction.Y;
+            }
+            return new Vector2(lx, ly);
         }
-        return inputDevice.Direction.Vector;
+        else //use WASD keys
+        {
+            Vector2 dir = Vector2.zero;
+            if (Input.GetKey(KeyCode.W))
+            {
+                dir.y += 1;
+            }
+            if (Input.GetKey(KeyCode.S))
+            {
+                dir.y -= 1;
+            }
+            if (Input.GetKey(KeyCode.A))
+            {
+                dir.x -= 1;
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                dir.x += 1;
+            }
+            return dir;
+        }
+
     }
 
     public Vector2 RightStick()

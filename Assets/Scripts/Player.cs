@@ -3,8 +3,10 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public int number;
+    public bool useKeyboardAndMouse = false;
 
     private XBoxController controller;
+    private HandController Hand;
 
     private int groundLayerMask;
     private int wallLayerMask;
@@ -21,9 +23,16 @@ public class Player : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
     }
 
+    void Start()
+    {
+        Hand = transform.Find("Hand").gameObject.GetComponent<HandController>();
+    }
+
     void Update()
     {
         controller.InputUpdate();
+        controller.useKeyboard = useKeyboardAndMouse;
+        Hand.useMouse = useKeyboardAndMouse;
     }
 
     void FixedUpdate()
