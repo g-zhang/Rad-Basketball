@@ -1,8 +1,10 @@
 using UnityEngine;
+using InControl;
 
 public class XBoxController
 {
     private int playerNumber;
+    private InputDevice inputDevice;
 
     // Last time stick was zeroed
     private float zeroTime;
@@ -16,29 +18,45 @@ public class XBoxController
         this.playerNumber = playerNumber;
     }
 
+    //this needs to be called in Update() of the monobehavior creating the instance of XBoxController
+    public void InputUpdate()
+    {
+        inputDevice = (InputManager.Devices.Count > playerNumber) ? InputManager.Devices[playerNumber] : null;
+    }
+
     public Vector2 LeftStick()
     {
-        float lx = Input.GetAxis("P" + playerNumber + "LX");
-        float ly = Input.GetAxis("P" + playerNumber + "LY");
-        return new Vector2(lx, ly);
+        if(inputDevice == null)
+        {
+            return Vector2.zero;
+        }
+        return inputDevice.Direction.Vector;
     }
 
     public Vector2 RightStick()
     {
-        float rx = Input.GetAxis("P" + playerNumber + "RX");
-        float ry = Input.GetAxis("P" + playerNumber + "RY");
+        if (inputDevice == null)
+        {
+            return Vector2.zero;
+        }
+        float rx = inputDevice.RightStick.X;
+        float ry = inputDevice.RightStick.Y;
         return new Vector2(rx, ry);
     }
 
     public bool RightTrigger()
     {
-        float rt = Input.GetAxis("P" + playerNumber + "RT");
-        return rt < -0.5f;
+        if (inputDevice == null)
+        {
+            return false;
+        }
+        return inputDevice.RightTrigger.State;
     }
 
     public Vector2 Flick()
     {
         float magnitude = LeftStick().y;
+        float xmag = Mathf.Abs(LeftStick().x);
 
         if (magnitude < 0.2f)
         {
@@ -46,7 +64,7 @@ public class XBoxController
             zeroTime = Time.time;
             return Vector2.zero;
         }
-        else if (!flicked && magnitude > 0.9f)
+        else if (!flicked && (magnitude > 0.8f || (magnitude > .3f && xmag < .85f)))
         {
             flicked = true;
             float duration = Time.time - zeroTime;

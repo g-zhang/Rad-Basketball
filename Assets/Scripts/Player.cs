@@ -21,11 +21,16 @@ public class Player : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
     }
 
+    void Update()
+    {
+        controller.InputUpdate();
+    }
+
     void FixedUpdate()
     {
         Vector2 velocity = body.velocity;
-
         Vector2 flick = controller.Flick();
+
         if (flick != Vector2.zero)
         {
             bool verticalFlick = Mathf.Abs(flick.y) >= Mathf.Abs(flick.x);
