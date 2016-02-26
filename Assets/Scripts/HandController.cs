@@ -5,15 +5,17 @@ public class HandController : MonoBehaviour {
 
     XBoxController controls;
     Vector2 rstickDir = Vector2.zero;
+    GameObject powerBar;
 
-    public bool useMouse = false;
+    [Header("Config")]
     public float HandMoveDistanceMult = .5f;
+    public GameObject parentPlayerObj;
 
     [Header("Status")]
+    public bool useMouse = false;
     public bool hasBall = false;
     public GameObject ball = null;
     public float shotCharge = 0;
-    public GameObject parentPlayerObj;
     public float handCollCooldown = 0f;
     Vector3 defaultPos;
 
@@ -35,6 +37,7 @@ public class HandController : MonoBehaviour {
         defaultPos = gameObject.transform.localPosition;
         gameObject.transform.position = parentPlayerObj.transform.position + new Vector3(0, 0, 0);
         controls = parentPlayerObj.GetComponent<Player>().GetXBoxController();
+        powerBar = transform.Find("PowerBar").gameObject;
     }
 
     void getHandPosition()
@@ -63,6 +66,10 @@ public class HandController : MonoBehaviour {
         {
             gameObject.transform.position = parentPlayerObj.transform.position + new Vector3(rstickDir.x, rstickDir.y, 0f);
         }
+        if(rstickDir != Vector2.zero)
+        {
+            gameObject.transform.localRotation = Quaternion.LookRotation(rstickDir);
+        }    
     }
 
     void holdBall()
@@ -74,10 +81,15 @@ public class HandController : MonoBehaviour {
         }
     }
 
+    float computePower()
+    {
+        return shotCharge > 1 ? 30 : shotCharge * 30;
+    }
+
     void throwBall(Vector2 dir)
     {
         gameObject.GetComponent<Collider2D>().enabled = false;
-        float magnitude = shotCharge > 1 ? 30 : shotCharge * 30;
+        float magnitude = computePower();
         shotCharge = 0;
         hasBall = false;
         ball.GetComponent<Rigidbody2D>().velocity = dir.normalized * magnitude;
@@ -105,9 +117,21 @@ public class HandController : MonoBehaviour {
             if (controls.RightTrigger() || useMouse && Input.GetMouseButton(0))
             {
                 shotCharge += Time.deltaTime;
+
+                //show power bar
+                powerBar.GetComponent<LineRenderer>().enabled = true;
+                powerBar.transform.localScale = new Vector3(powerBar.transform.localScale.x,
+                                                            powerBar.transform.localScale.y,
+                                                            computePower() * .25f);
             }
             else if(shotCharge > 0)
+            {
                 throwBall(rstickDir);
+            }        
+        } else
+        {
+            //hide powerbar
+            powerBar.GetComponent<LineRenderer>().enabled = false;
         }
 	}
 
