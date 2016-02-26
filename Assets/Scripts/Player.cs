@@ -4,6 +4,8 @@ public class Player : MonoBehaviour
 {
     public int number;
     public bool useKeyboardAndMouse = false;
+    public GameObject HandPrefab;
+    public Material HandColor;
 
     private XBoxController controller;
     private HandController Hand;
@@ -25,7 +27,12 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        Hand = transform.Find("Hand").gameObject.GetComponent<HandController>();
+        //Hand = transform.Find("Hand").gameObject.GetComponent<HandController>();
+        GameObject handObj = Instantiate(HandPrefab);
+        handObj.transform.parent = gameObject.transform;
+        handObj.GetComponent<Renderer>().material = HandColor;
+        Hand = handObj.GetComponent<HandController>();
+        Hand.parentPlayerObj = gameObject;
     }
 
     void Update()

@@ -21,25 +21,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &139010
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 418812}
-  - 33: {fileID: 3347956}
-  - 23: {fileID: 2318310}
-  - 114: {fileID: 11477818}
-  - 58: {fileID: 5850090}
-  m_Layer: 8
-  m_Name: Hand
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &159010
 GameObject:
   m_ObjectHideFlags: 0
@@ -58,18 +39,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &418812
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 139010}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
-  m_Children: []
-  m_Father: {fileID: 418984}
-  m_RootOrder: 0
 --- !u!4 &418984
 Transform:
   m_ObjectHideFlags: 1
@@ -80,7 +49,6 @@ Transform:
   m_LocalPosition: {x: 3, y: 1.17, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
-  - {fileID: 418812}
   - {fileID: 431226}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -95,33 +63,7 @@ Transform:
   m_LocalScale: {x: 1.8, y: 1.8, z: 1}
   m_Children: []
   m_Father: {fileID: 418984}
-  m_RootOrder: 1
---- !u!23 &2318310
-MeshRenderer:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 139010}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_Materials:
-  - {fileID: 2100000, guid: 1708e73a8900c49b5b2667b2c9195ac4, type: 2}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 1
-  m_ReflectionProbeUsage: 1
-  m_ProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_RootOrder: 0
 --- !u!23 &2337768
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -148,13 +90,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!33 &3347956
-MeshFilter:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 139010}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &3348586
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -179,20 +114,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!58 &5850090
-CircleCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 139010}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
 --- !u!61 &6104818
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -246,23 +167,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 052de45e3072649aa96442d1b7ad03d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &11477818
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 139010}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a7c746b0a8cb674d845e73071540898, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HandMoveDistanceMult: 0.5
-  hasBall: 0
-  ball: {fileID: 0}
-  shotCharge: 0
-  parentPlayerObj: {fileID: 133948}
-  handCollCooldown: 0
 --- !u!114 &11495502
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -275,6 +179,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   number: 1
+  useKeyboardAndMouse: 0
+  HandPrefab: {fileID: 104000, guid: 8be5c3ae6129af140b0e8923b770719c, type: 2}
+  HandColor: {fileID: 2100000, guid: 1708e73a8900c49b5b2667b2c9195ac4, type: 2}
 --- !u!212 &21205696
 SpriteRenderer:
   m_ObjectHideFlags: 1
