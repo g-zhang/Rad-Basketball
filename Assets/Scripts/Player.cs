@@ -82,6 +82,15 @@ public class Player : MonoBehaviour
         velocity.x = Mathf.Lerp(velocity.x, 10 * controller.LeftStick().x, lerpScale);
 
         body.velocity = velocity;
+
+		//Ramp logic
+		RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.5f, groundLayerMask);
+		if (hit.collider != null) {
+			if (hit.transform.gameObject.tag == "Ramp") {
+				print ("Player is on ramp");
+				body.velocity *= 1.1f;
+			}
+		}
     }
 
     bool Grounded()
