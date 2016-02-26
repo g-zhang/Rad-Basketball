@@ -8,6 +8,7 @@ TagManager:
   - Blue_Hoop
   - Red_Hoop
   - Hand
+  - Ramp
   layers:
   - Default
   - TransparentFX
