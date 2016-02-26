@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
         {
             bool verticalFlick = Mathf.Abs(flick.y) >= Mathf.Abs(flick.x);
 
-            if (Grounded() && flick.y > 0)
+			if (Grounded() && flick.y > 0)
             {
                 velocity.y = flick.magnitude;
             }
