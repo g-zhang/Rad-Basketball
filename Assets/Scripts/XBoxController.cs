@@ -73,6 +73,15 @@ public class XBoxController
         return new Vector2(rx, ry);
     }
 
+    public bool LeftTrigger()
+    {
+        if (inputDevice == null)
+        {
+            return false;
+        }
+        return inputDevice.LeftTrigger.State;
+    }
+
     public bool RightTrigger()
     {
         if (inputDevice == null)

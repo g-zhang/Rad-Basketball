@@ -32,6 +32,16 @@ public class HandController : MonoBehaviour {
         return distance;
     }
 
+    public bool FireControl()
+    {
+        return !useMouse && controls.RightTrigger() || useMouse && Input.GetMouseButton(0);
+    }
+
+    public bool DisarmControl()
+    {
+        return !useMouse && controls.LeftTrigger() || useMouse && Input.GetMouseButton(1);
+    }
+
     // Use this for initialization
     void Start () {
         defaultPos = gameObject.transform.localPosition;
@@ -114,20 +124,33 @@ public class HandController : MonoBehaviour {
         //temp way to let go of the ball until we decide on how to throw the ball and other physics
         if (hasBall)
         {
-            if (controls.RightTrigger() || useMouse && Input.GetMouseButton(0))
+            if (DisarmControl())
+            {
+                shotCharge = 0;
+                powerBar.GetComponent<LineRenderer>().enabled = false;
+            }
+            else if (FireControl())
             {
                 shotCharge += Time.deltaTime;
 
                 //show power bar
-                powerBar.GetComponent<LineRenderer>().enabled = true;
+                if (rstickDir.magnitude > .25f)
+                {
+                    powerBar.GetComponent<LineRenderer>().enabled = true;
+                }
+                else
+                {
+                    powerBar.GetComponent<LineRenderer>().enabled = false;
+                }
                 powerBar.transform.localScale = new Vector3(powerBar.transform.localScale.x,
-                                                            powerBar.transform.localScale.y,
-                                                            computePower() * .25f);
+                                                powerBar.transform.localScale.y,
+                                                computePower() * .25f);
             }
-            else if(shotCharge > 0)
+            else if (shotCharge > 0 && !DisarmControl())
             {
                 throwBall(rstickDir);
-            }        
+            }
+
         } else
         {
             //hide powerbar
