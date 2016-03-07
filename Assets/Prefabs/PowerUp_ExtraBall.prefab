@@ -76,6 +76,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 418830}
   - 58: {fileID: 5869918}
+  - 114: {fileID: 11416864}
   m_Layer: 0
   m_Name: PowerUp_ExtraBall
   m_TagString: PowerUp_ExtraBall
@@ -413,6 +414,17 @@ Light:
   m_ShadowRadius: 0
   m_ShadowAngle: 0
   m_AreaSize: {x: 1, y: 1}
+--- !u!114 &11416864
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 158480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02aa5c1e559eb4f52a45743e4796013f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11469320
 MonoBehaviour:
   m_ObjectHideFlags: 1
