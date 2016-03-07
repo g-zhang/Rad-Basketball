@@ -9,6 +9,8 @@ TagManager:
   - Red_Hoop
   - Hand
   - Ramp
+  - PowerUp_DoubleJump
+  - PowerUp_ExtraBall
   layers:
   - Default
   - TransparentFX

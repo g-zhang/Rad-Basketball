@@ -13,6 +13,10 @@ public class Player : MonoBehaviour
     private int groundLayerMask;
     private int wallLayerMask;
 
+	private bool double_jump = false;
+	private bool double_jumping = false;
+	private bool extra_ball = false;
+
     private Rigidbody2D body;
 
     void Awake()
@@ -51,10 +55,18 @@ public class Player : MonoBehaviour
         {
             bool verticalFlick = Mathf.Abs(flick.y) >= Mathf.Abs(flick.x);
 
+			if (Grounded ())
+				double_jumping = false;
+
 			if (Grounded() && flick.y > 0)
             {
                 velocity.y = flick.magnitude;
             }
+
+			if (!Grounded () && flick.y > 0 && double_jump && !double_jumping) {
+				velocity.y = flick.magnitude;
+				double_jumping = true;
+			}
 
             float angle = Vector2.Angle(new Vector2(Mathf.Abs(flick.x), Mathf.Abs(flick.y)), Vector2.up);
 
@@ -107,4 +119,16 @@ public class Player : MonoBehaviour
     {
         return controller;
     }
+
+	void OnTriggerEnter2D (Collider2D col) {
+		if (col.gameObject.tag == "PowerUp_DoubleJump") {
+			print ("got double jump!");
+			double_jump = true;
+		}
+
+		if (col.gameObject.tag == "PowerUp_ExtraBall") {
+			print ("got extra ball!");
+			extra_ball = true;
+		}
+	}
 }
