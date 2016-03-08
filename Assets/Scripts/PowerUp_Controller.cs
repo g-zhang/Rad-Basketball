@@ -5,13 +5,16 @@ public class PowerUp_Controller : MonoBehaviour {
 
 	public GameObject p_double_jump;
 	public GameObject p_extra_ball;
+	public GameObject ball;
 
 	float counter = 0.0f;
 	float checker = 0.0f;
 
+	public static PowerUp_Controller instance;
+
 	// Use this for initialization
 	void Start () {
-
+		instance = this;
 	}
 	
 	// Update is called once per frame

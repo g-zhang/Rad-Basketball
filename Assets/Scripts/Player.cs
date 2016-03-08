@@ -124,11 +124,13 @@ public class Player : MonoBehaviour
 		if (col.gameObject.tag == "PowerUp_DoubleJump") {
 			print ("got double jump!");
 			double_jump = true;
+			Destroy (col.gameObject);
 		}
 
 		if (col.gameObject.tag == "PowerUp_ExtraBall") {
 			print ("got extra ball!");
 			extra_ball = true;
+			Destroy (col.gameObject);
 		}
 	}
 }
