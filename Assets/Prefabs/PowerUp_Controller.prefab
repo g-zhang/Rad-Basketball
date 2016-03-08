@@ -931,6 +931,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   p_double_jump: {fileID: 156762, guid: 378e7531c47a84023af5fbdd7095ca3e, type: 2}
   p_extra_ball: {fileID: 158480, guid: 8e784fecea7ae41399eef4d60ad99edb, type: 2}
+  ball: {fileID: 129836, guid: 7ad0c2818cf424d3dbabbabf4adf64d6, type: 2}
 --- !u!114 &11444242
 MonoBehaviour:
   m_ObjectHideFlags: 1
