@@ -4,32 +4,28 @@ using System.Collections;
 public class BallController : MonoBehaviour {
 
 	public GameObject owner;
-	public GameObject explosion;
+	public GameObject bounceEffect;
 
 	// Use this for initialization
 	void Start () {
 		owner = null;
-
+		bounceEffect = transform.Find ("BounceEffect").gameObject;
 	}
 
 	// Update is called once per frame
 	void Update () {
 		updateTrail();
         if (owner)
-        {
-            Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Ball"), true);
-        }
+        	Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Ball"), true);
         else
-        {
             Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Ball"), false);
-        }
     }
 
 	void OnCollisionEnter2D(Collision2D coll) {
-		// Instantiate(explosion, transform.position, Quaternion.identity);
-		// if (coll.gameObject.tag == "Hoop")
-		// Instantiate(explosion, transform.position, Quaternion.identity);
-
+		if (!owner && (coll.gameObject.tag == "Stage" || coll.gameObject.tag == "Ramp")) {
+			bounceEffect.SetActive (false);
+			bounceEffect.SetActive (true);
+		}
 	}
 
 	void updateTrail() {

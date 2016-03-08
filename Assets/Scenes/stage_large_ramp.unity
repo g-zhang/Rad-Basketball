@@ -248,6 +248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799eed67c5b8347f5b4641d0da2c1cf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosion: {fileID: 100000, guid: 49ee383306650b645b8a12b582a38b10, type: 2}
 --- !u!1 &305209861
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,11 +417,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 438318, guid: 7ad0c2818cf424d3dbabbabf4adf64d6, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -2.08
+      value: -8.63
       objectReference: {fileID: 0}
     - target: {fileID: 438318, guid: 7ad0c2818cf424d3dbabbabf4adf64d6, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 3.41
+      value: 3.81
       objectReference: {fileID: 0}
     - target: {fileID: 438318, guid: 7ad0c2818cf424d3dbabbabf4adf64d6, type: 2}
       propertyPath: m_LocalPosition.z
@@ -446,21 +447,17 @@ Prefab:
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 438318, guid: 7ad0c2818cf424d3dbabbabf4adf64d6, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 0.1
+    - target: {fileID: 457462, guid: 7ad0c2818cf424d3dbabbabf4adf64d6, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 438318, guid: 7ad0c2818cf424d3dbabbabf4adf64d6, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 0.1
+    - target: {fileID: 457462, guid: 7ad0c2818cf424d3dbabbabf4adf64d6, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 438318, guid: 7ad0c2818cf424d3dbabbabf4adf64d6, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 12288890, guid: 7ad0c2818cf424d3dbabbabf4adf64d6, type: 2}
-      propertyPath: m_Size
-      value: 0.2
+    - target: {fileID: 19802658, guid: 7ad0c2818cf424d3dbabbabf4adf64d6, type: 2}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.05
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7ad0c2818cf424d3dbabbabf4adf64d6, type: 2}
@@ -625,6 +622,10 @@ Prefab:
     - target: {fileID: 142814, guid: 766fb2e52e03c4760b529959fc0218e2, type: 2}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5034976, guid: 766fb2e52e03c4760b529959fc0218e2, type: 2}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 766fb2e52e03c4760b529959fc0218e2, type: 2}
@@ -1615,6 +1616,10 @@ Prefab:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5068058, guid: 5ba3c3304f4d4460281cc5aed4ab3643, type: 2}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5ba3c3304f4d4460281cc5aed4ab3643, type: 2}
   m_IsPrefabParent: 0
@@ -1689,6 +1694,10 @@ Prefab:
     - target: {fileID: 133948, guid: 03ae25f5e36d14e748807654045c9656, type: 2}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5079562, guid: 03ae25f5e36d14e748807654045c9656, type: 2}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 03ae25f5e36d14e748807654045c9656, type: 2}
@@ -1899,6 +1908,10 @@ Prefab:
     - target: {fileID: 158486, guid: 5ec7eea4cd1a44879a183a0b24334fd2, type: 2}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5077850, guid: 5ec7eea4cd1a44879a183a0b24334fd2, type: 2}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5ec7eea4cd1a44879a183a0b24334fd2, type: 2}
@@ -2414,7 +2427,7 @@ Transform:
   - {fileID: 519826054}
   - {fileID: 1346210611}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
 --- !u!1 &1707695682
 GameObject:
   m_ObjectHideFlags: 0
@@ -2914,3 +2927,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799eed67c5b8347f5b4641d0da2c1cf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosion: {fileID: 100000, guid: 49ee383306650b645b8a12b582a38b10, type: 2}
