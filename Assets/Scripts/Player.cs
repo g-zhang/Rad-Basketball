@@ -17,6 +17,9 @@ public class Player : MonoBehaviour
 	private bool double_jumping = false;
 	private bool extra_ball = false;
 
+    private float lastBump = 0;
+    private float minBumpWait = 2f;
+
     private Rigidbody2D body;
 
     void Awake()
@@ -44,6 +47,14 @@ public class Player : MonoBehaviour
         controller.InputUpdate();
         controller.useKeyboard = useKeyboardAndMouse;
         Hand.useMouse = useKeyboardAndMouse;
+
+        if (controller.LeftBumper()) {
+            Bump(Vector2.left);
+        }
+
+        if (controller.RightBumper()) {
+            Bump(Vector2.right);
+        }
     }
 
     void FixedUpdate()
@@ -118,6 +129,14 @@ public class Player : MonoBehaviour
     public XBoxController GetXBoxController()
     {
         return controller;
+    }
+
+    private void Bump(Vector2 direction)
+    {
+        if (Time.time - lastBump >= minBumpWait) {
+            body.velocity = body.velocity + direction * 20;
+            lastBump = Time.time;
+        }
     }
 
 	void OnTriggerEnter2D (Collider2D col) {

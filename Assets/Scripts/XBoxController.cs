@@ -91,6 +91,24 @@ public class XBoxController
         return inputDevice.RightTrigger.State;
     }
 
+    public bool LeftBumper()
+    {
+        if (inputDevice == null)
+        {
+            return false;
+        }
+        return inputDevice.LeftBumper.State;
+    }
+
+    public bool RightBumper()
+    {
+        if (inputDevice == null)
+        {
+            return false;
+        }
+        return inputDevice.RightBumper.State;
+    }
+
     public Vector2 Flick()
     {
         float magnitude = LeftStick().y;
