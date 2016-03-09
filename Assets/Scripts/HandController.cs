@@ -54,7 +54,7 @@ public class HandController : MonoBehaviour {
 
     void getHandPosition()
     {
-        if(useMouse)
+        if (useMouse)
         {
             Vector3 mousePos2D = Input.mousePosition;
             mousePos2D.z = -Camera.main.transform.position.z;
@@ -78,7 +78,7 @@ public class HandController : MonoBehaviour {
         {
             gameObject.transform.position = parentPlayerObj.transform.position + new Vector3(rstickDir.x, rstickDir.y, 0f);
         }
-        if(rstickDir != Vector2.zero)
+        if (rstickDir != Vector2.zero)
         {
             gameObject.transform.localRotation = Quaternion.LookRotation(rstickDir);
         }    
@@ -86,7 +86,7 @@ public class HandController : MonoBehaviour {
 
     void holdBall()
     {
-        if(hasBall)
+        if (hasBall)
         {
             Debug.DrawRay(ball.transform.position, Vector3.up * 5f, Color.blue);
             ball.transform.position = gameObject.transform.position;
@@ -95,7 +95,10 @@ public class HandController : MonoBehaviour {
 
     float computePower()
     {
-        return shotCharge > 1 ? 30 : shotCharge * 30;
+		if (shotCharge < 0.2f)
+			return 5;
+		else
+			return shotCharge > 1 ? 20 : shotCharge * 25;
     }
 
     void disownBall()
@@ -111,7 +114,7 @@ public class HandController : MonoBehaviour {
         float magnitude = computePower();
         shotCharge = 0;
         ball.GetComponent<Rigidbody2D>().velocity = dir.normalized * magnitude;
-        handCollCooldown = .1f;
+        handCollCooldown = 0.1f;
         disownBall();
     }
 	

@@ -13,7 +13,7 @@ public class Respawn : MonoBehaviour {
 		if (gameObject.transform.position.y < -12.0f) {
 			if (gameObject.tag == "Ball") {
 				if (gameObject.GetComponent<BallController>().owner == null) {
-					gameObject.transform.position = Vector2.zero;
+					gameObject.transform.position = new Vector2 (0, 4);
 					gameObject.GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
 				}
 			}

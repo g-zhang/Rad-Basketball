@@ -6,8 +6,8 @@ public class ScoreKeeper : MonoBehaviour {
 
 	public static ScoreKeeper instance;
 
-	private int blue_score;
-	private int red_score;
+	public int blue_score;
+	public int red_score;
 
 	public Text blue_score_text;
 	public Text red_score_text;
