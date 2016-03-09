@@ -14,6 +14,8 @@ public class HandController : MonoBehaviour {
     [Header("Status")]
     public bool useMouse = false;
     public bool hasBall = false;
+    private float lastBump = 0;
+    private float bumpDelay = 1f;
     public GameObject ball = null;
     public float shotCharge = 0;
     public float handCollCooldown = 0f;
@@ -96,16 +98,21 @@ public class HandController : MonoBehaviour {
         return shotCharge > 1 ? 30 : shotCharge * 30;
     }
 
+    void disownBall()
+    {
+        hasBall = false;
+        ball.GetComponent<BallController>().owner = null;
+        ball = null;
+    }
+
     void throwBall(Vector2 dir)
     {
         gameObject.GetComponent<Collider2D>().enabled = false;
         float magnitude = computePower();
         shotCharge = 0;
-        hasBall = false;
         ball.GetComponent<Rigidbody2D>().velocity = dir.normalized * magnitude;
-        ball.GetComponent<BallController>().owner = null;
-        ball = null;
         handCollCooldown = .1f;
+        disownBall();
     }
 	
 	// Update is called once per frame
@@ -119,7 +126,9 @@ public class HandController : MonoBehaviour {
         }
 
         getHandPosition();
-        holdBall();
+        if (canHold()) {
+            holdBall();
+        }
 
         //temp way to let go of the ball until we decide on how to throw the ball and other physics
         if (hasBall)
@@ -162,15 +171,34 @@ public class HandController : MonoBehaviour {
     {
         if(other.tag == "Ball")
         {
+            if (!canHold()) {
+                return;
+            }
+
             ball = other.gameObject;
+
+            /*
             if(ball.GetComponent<BallController>().owner != null && ball.GetComponent<BallController>().owner != this.gameObject)
             {
                 HandController prevowner = ball.GetComponent<BallController>().owner.GetComponent<HandController>();
                 prevowner.hasBall = false;
                 prevowner.ball = null;
             }
-            ball.GetComponent<BallController>().owner = this.gameObject;
-            hasBall = true;
+            */
+
+            if (ball.GetComponent<BallController>().owner == null) {
+                ball.GetComponent<BallController>().owner = this.gameObject;
+                hasBall = true;
+            }
         }
+    }
+
+    private bool canHold() {
+        return (Time.time - lastBump > bumpDelay);
+    }
+
+    public void Bumped() {
+        lastBump = Time.time;
+        disownBall();
     }
 }

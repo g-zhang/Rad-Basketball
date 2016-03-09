@@ -151,5 +151,12 @@ public class Player : MonoBehaviour
 			extra_ball = true;
 			Destroy (col.gameObject);
 		}
+
+        if (col.gameObject.tag == "Person") {
+            float magnitude = col.attachedRigidbody.velocity.magnitude;
+            if (magnitude > 5f) {
+                Hand.Bumped();
+            }
+        }
 	}
 }
