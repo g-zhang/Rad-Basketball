@@ -100,7 +100,7 @@ public class Player : MonoBehaviour
 		if (hit.collider != null) {
 			if (hit.transform.gameObject.tag == "Ramp") {
 				print ("Player is on ramp");
-				body.velocity *= 1.1f;
+				body.velocity *= 1.05f;
 			}
 		}
     }
