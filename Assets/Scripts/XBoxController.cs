@@ -93,20 +93,28 @@ public class XBoxController
 
     public bool LeftBumper()
     {
-        if (inputDevice == null)
-        {
-            return false;
+        if (useKeyboard) {
+            return Input.GetKey(KeyCode.Q);
+        } else {
+            if (inputDevice == null)
+            {
+                return false;
+            }
+            return inputDevice.LeftBumper.State;
         }
-        return inputDevice.LeftBumper.State;
     }
 
     public bool RightBumper()
     {
-        if (inputDevice == null)
-        {
-            return false;
+        if (useKeyboard) {
+            return Input.GetKey(KeyCode.E);
+        } else {
+            if (inputDevice == null)
+            {
+                return false;
+            }
+            return inputDevice.RightBumper.State;
         }
-        return inputDevice.RightBumper.State;
     }
 
     public Vector2 Flick()
