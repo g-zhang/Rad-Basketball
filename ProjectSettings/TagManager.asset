@@ -11,6 +11,7 @@ TagManager:
   - Ramp
   - PowerUp_DoubleJump
   - PowerUp_ExtraBall
+  - Person
   layers:
   - Default
   - TransparentFX
