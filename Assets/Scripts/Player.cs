@@ -71,7 +71,7 @@ public class Player : MonoBehaviour
 
 			if (Grounded() && flick.y > 0)
             {
-                velocity.y = flick.magnitude * 0.75f;
+                velocity.y = flick.magnitude;
             }
 
 			if (!Grounded () && flick.y > 0 && double_jump && !double_jumping) {
