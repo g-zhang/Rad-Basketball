@@ -14,6 +14,7 @@ public class Respawn : MonoBehaviour {
 			if (gameObject.tag == "Ball") {
 				if (gameObject.GetComponent<BallController>().owner == null) {
 					gameObject.transform.position = Vector2.zero;
+					gameObject.GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
 				}
 			}
 
