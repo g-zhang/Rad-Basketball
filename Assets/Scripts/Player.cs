@@ -56,6 +56,10 @@ public class Player : MonoBehaviour
 			Bump(Vector2.right);
 		}
 
+        if (controller.Select()) {
+            Application.LoadLevel("stage_select");
+        }
+
 		if (double_jump) {
 			if (powerup_counter < 1000)
 				powerup_counter++;
@@ -159,7 +163,7 @@ public class Player : MonoBehaviour
 			PowerUp_Controller.instance.SpawnExtraBall ();
 		}
 
-		if (col.gameObject.tag == "Person") {
+		if (col.gameObject.tag == "Player") {
 			float magnitude = col.attachedRigidbody.velocity.magnitude;
 			if (magnitude > 5f) {
 				Hand.Bumped();

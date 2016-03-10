@@ -117,6 +117,18 @@ public class XBoxController
         }
     }
 
+    public bool Select()
+    {
+        if (useKeyboard) {
+            return Input.GetKey(KeyCode.Escape);
+        } else {
+            if (inputDevice == null) {
+                return false;
+            }
+            return inputDevice.MenuWasPressed;
+        }
+    }
+
     public Vector2 Flick()
     {
         float magnitude = LeftStick().y;
