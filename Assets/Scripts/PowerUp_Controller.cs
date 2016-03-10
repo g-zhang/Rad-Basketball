@@ -6,6 +6,7 @@ public class PowerUp_Controller : MonoBehaviour {
 	public GameObject p_double_jump;
 	public GameObject p_extra_ball;
 	public GameObject ball;
+	public GameObject extra_ball;
 
 	float counter = 0.0f;
 	float checker = 0.0f;
@@ -16,7 +17,7 @@ public class PowerUp_Controller : MonoBehaviour {
 	void Start () {
 		instance = this;
 	}
-	
+
 	// Update is called once per frame
 	void FixedUpdate() {
 
@@ -40,6 +41,10 @@ public class PowerUp_Controller : MonoBehaviour {
 				temp_p.transform.SetParent (this.transform);
 			}
 		}
-			
+
+	}
+
+	public void SpawnExtraBall () {
+		Instantiate (extra_ball);
 	}
 }
