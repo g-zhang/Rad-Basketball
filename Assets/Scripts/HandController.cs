@@ -161,7 +161,7 @@ public class HandController : MonoBehaviour {
                 }
                 powerBar.transform.localScale = new Vector3(powerBar.transform.localScale.x,
                                                 powerBar.transform.localScale.y,
-                                                computePower() * .25f);
+                                                computePower() * .5f);
             }
             else if (shotCharge > 0 && !DisarmControl())
             {
