@@ -105,9 +105,11 @@ public class HandController : MonoBehaviour {
 
     public void disownBall()
     {
-        hasBall = false;
-        ball.GetComponent<BallController>().owner = null;
-        ball = null;
+		if (ball) {
+	        hasBall = false;
+	        ball.GetComponent<BallController>().owner = null;
+	        ball = null;
+		}
     }
 
     void throwBall(Vector2 dir)
@@ -123,12 +125,9 @@ public class HandController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         if(handCollCooldown > 0)
-        {
             handCollCooldown -= Time.deltaTime;
-        } else
-        {
+        else
             gameObject.GetComponent<Collider2D>().enabled = true;
-        }
 
 		if (shotCharge != 0) 
 			GetComponent<AudioSource> ().enabled = true;
@@ -137,9 +136,8 @@ public class HandController : MonoBehaviour {
 			
 
         getHandPosition();
-        if (canHold()) {
+        if (canHold())
             holdBall();
-        }
 
         if (hasBall)
         {
@@ -183,9 +181,8 @@ public class HandController : MonoBehaviour {
     {
         if(other.tag == "Ball")
         {
-            if (!canHold()) {
+            if (!canHold())
                 return;
-            }
 
             ball = other.gameObject;
 
