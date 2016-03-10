@@ -1845,6 +1845,10 @@ Prefab:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11495502, guid: 03ae25f5e36d14e748807654045c9656, type: 2}
+      propertyPath: useKeyboardAndMouse
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 03ae25f5e36d14e748807654045c9656, type: 2}
   m_IsPrefabParent: 0
