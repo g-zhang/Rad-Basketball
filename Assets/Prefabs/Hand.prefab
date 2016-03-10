@@ -193,10 +193,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a7c746b0a8cb674d845e73071540898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shoot: {fileID: 8300000, guid: 5df536dd701d7411f99e13fef736fb6c, type: 3}
   HandMoveDistanceMult: 0.5
   parentPlayerObj: {fileID: 0}
-  charge: {fileID: 8300000, guid: 16e9d0b2665b6447c961d151d77c7ec0, type: 3}
-  shoot: {fileID: 8300000, guid: c7ad191914a7941ef8eb9c9ea08d80a5, type: 3}
   useMouse: 0
   hasBall: 0
   ball: {fileID: 0}
@@ -276,7 +275,7 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: shoot
       value: 
-      objectReference: {fileID: 8300000, guid: c7ad191914a7941ef8eb9c9ea08d80a5, type: 3}
+      objectReference: {fileID: 8300000, guid: 5df536dd701d7411f99e13fef736fb6c, type: 3}
     - target: {fileID: 0}
       propertyPath: panLevelCustomCurve.m_RotationOrder
       value: 0

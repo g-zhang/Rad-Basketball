@@ -3,15 +3,15 @@ using System.Collections;
 
 public class HandController : MonoBehaviour {
 
+	public AudioSource shoot;
     XBoxController controls;
     Vector2 rstickDir = Vector2.zero;
     GameObject powerBar;
 
+
     [Header("Config")]
     public float HandMoveDistanceMult = .5f;
     public GameObject parentPlayerObj;
-	public AudioClip charge;
-	public AudioClip shoot;
 
     [Header("Status")]
     public bool useMouse = false;
@@ -166,8 +166,8 @@ public class HandController : MonoBehaviour {
             else if (shotCharge > 0 && !DisarmControl())
             {
                 throwBall(rstickDir);
-
-
+				print ("shot");
+				transform.GetChild (1).GetComponent<AudioSource> ().Play ();
             }
 
         } else
