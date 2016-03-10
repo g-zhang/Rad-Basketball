@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class StageSelectController : MonoBehaviour {
@@ -6,6 +7,7 @@ public class StageSelectController : MonoBehaviour {
     [System.Serializable]
     public class Stage {
         public string name;
+        public string title;
         public Sprite sprite;
     }
 
@@ -13,6 +15,7 @@ public class StageSelectController : MonoBehaviour {
 
     public GameObject stageItemPrefab;
     public GameObject cursorCornerPrefab;
+    public Text text;
 
     private int cursorPosition = 0;
     private int mod = 0;
@@ -102,6 +105,8 @@ public class StageSelectController : MonoBehaviour {
             cursorCorners[k].transform.position = Vector3.Lerp(cursorCorners[k].transform.position, destinations[i], 0.1f);
             cursorCorners[k].transform.rotation = Quaternion.Lerp(cursorCorners[k].transform.rotation, rotations[i], 0.1f);
         }
+
+        UpdateText();
     }
 
     private void MoveLeft()
@@ -109,6 +114,7 @@ public class StageSelectController : MonoBehaviour {
         if (cursorPosition > 0)
         {
             cursorPosition -= 1;
+            UpdateText();
         }
     }
 
@@ -117,6 +123,7 @@ public class StageSelectController : MonoBehaviour {
         if (cursorPosition < stages.Length - 1)
         {
             cursorPosition += 1;
+            UpdateText();
         }
     }
 
@@ -124,5 +131,11 @@ public class StageSelectController : MonoBehaviour {
     {
         Stage stage = stages[cursorPosition];
         Application.LoadLevel(stage.name);
+    }
+
+    private void UpdateText()
+    {
+        Stage stage = stages[cursorPosition];
+        text.text = stage.title;
     }
 }
