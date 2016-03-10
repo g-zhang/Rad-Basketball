@@ -159,7 +159,7 @@ public class Player : MonoBehaviour
 			PowerUp_Controller.instance.SpawnExtraBall ();
 		}
 
-		if (col.gameObject.tag == "Person") {
+		if (col.gameObject.tag == "Player") {
 			float magnitude = col.attachedRigidbody.velocity.magnitude;
 			if (magnitude > 5f) {
 				Hand.Bumped();
