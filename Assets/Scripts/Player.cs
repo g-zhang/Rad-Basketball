@@ -56,6 +56,10 @@ public class Player : MonoBehaviour
 			Bump(Vector2.right);
 		}
 
+        if (controller.Select()) {
+            Application.LoadLevel("stage_select");
+        }
+
 		if (double_jump) {
 			if (powerup_counter < 1000)
 				powerup_counter++;
