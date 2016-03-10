@@ -22,11 +22,11 @@ public class Hoop : MonoBehaviour {
 	void Reset (GameObject ball) {
 		int score = 0;
 		if (gameObject.tag == "Red_Hoop") {
-			ScoreKeeper.instance.RedScored ();
-			score = ScoreKeeper.instance.red_score;
-		} else if (gameObject.tag == "Blue_Hoop"){
 			ScoreKeeper.instance.BlueScored ();
 			score = ScoreKeeper.instance.blue_score;
+		} else if (gameObject.tag == "Blue_Hoop"){
+			ScoreKeeper.instance.RedScored ();
+			score = ScoreKeeper.instance.red_score;
 		}
 
 		// Sound Effects and Arena Reset
