@@ -15,10 +15,14 @@ public class BallController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		updateTrail();
-        if (owner)
+		if (owner) {
+			((Behaviour)GetComponent ("Halo")).enabled = false;
         	Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Ball"), true);
-        else
+		}
+		else {
+			((Behaviour)GetComponent ("Halo")).enabled = true;
             Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Ball"), false);
+		}
     }
 
 	void OnCollisionEnter2D(Collision2D coll) {

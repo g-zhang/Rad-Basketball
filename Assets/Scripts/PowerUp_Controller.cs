@@ -21,7 +21,7 @@ public class PowerUp_Controller : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate() {
 
-		checker = Random.Range (1500.0f, 2000.0f);
+		checker = Random.Range (500.0f, 1000.0f);
 
 		if (counter < checker) {
 			counter++;
@@ -41,7 +41,6 @@ public class PowerUp_Controller : MonoBehaviour {
 				temp_p.transform.SetParent (this.transform);
 			}
 		}
-
 	}
 
 	public void SpawnExtraBall () {

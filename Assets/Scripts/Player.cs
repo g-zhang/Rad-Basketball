@@ -17,8 +17,8 @@ public class Player : MonoBehaviour
 	private bool double_jumping = false;
 	private int powerup_counter = 0;
 
-	private float lastBump = 0;
-	private float minBumpWait = 2f;
+    private float lastBump = 0;
+    private float minBumpWait = 1;
 
 	private Rigidbody2D body;
 
@@ -119,7 +119,6 @@ public class Player : MonoBehaviour
 		RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.5f, groundLayerMask);
 		if (hit.collider != null) {
 			if (hit.transform.gameObject.tag == "Ramp") {
-				print ("Player is on ramp");
 				body.velocity *= 1.05f;
 			}
 		}
@@ -150,14 +149,12 @@ public class Player : MonoBehaviour
 
 	void OnTriggerEnter2D (Collider2D col) {
 		if (col.gameObject.tag == "PowerUp_DoubleJump") {
-			print ("got double jump!");
 			double_jump = true;
 			powerup_counter = 0;
 			Destroy (col.gameObject);
 		}
 
 		if (col.gameObject.tag == "PowerUp_ExtraBall") {
-			print ("got extra ball!");
 			Destroy (col.gameObject);
 			PowerUp_Controller.instance.SpawnExtraBall ();
 		}

@@ -101,7 +101,7 @@ public class HandController : MonoBehaviour {
 			return shotCharge > 1 ? 20 : shotCharge * 25;
     }
 
-    void disownBall()
+    public void disownBall()
     {
         hasBall = false;
         ball.GetComponent<BallController>().owner = null;
