@@ -35,11 +35,13 @@ public class PowerUp_Controller : MonoBehaviour {
 				temp_p.transform.position = new Vector2 (Random.Range (-8.0f, 6.0f), 7.5f);
 				temp_p.transform.SetParent (this.transform);
 
-			} else {
+			} 
+			/* else {
 				GameObject temp_p = Instantiate(p_extra_ball);
 				temp_p.transform.position = new Vector2 (Random.Range (-8.0f, 6.0f), 7.5f);
 				temp_p.transform.SetParent (this.transform);
 			}
+			*/
 		}
 	}
 

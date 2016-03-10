@@ -19,6 +19,5 @@ public class PlatformController : MonoBehaviour {
 			GetComponent<Rigidbody2D> ().velocity = Vector2.right * 5;
 		else if (transform.position.x > rightBound)
 			GetComponent<Rigidbody2D> ().velocity = Vector2.left * 5;
-	
 	}
 }
