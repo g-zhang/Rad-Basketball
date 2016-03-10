@@ -490,9 +490,9 @@ MonoBehaviour:
   - name: stage_custom
     title: cat
     sprite: {fileID: 21300000, guid: 84c2ec69545474a1688f415484a7acbe, type: 3}
-  - name: stage_custom
-    title: doge
-    sprite: {fileID: 21300000, guid: 84c2ec69545474a1688f415484a7acbe, type: 3}
+  - name: stage_ice
+    title: stage_ice
+    sprite: {fileID: 21300000, guid: 4964b1f438aa141a6950727d6bbda1d9, type: 3}
   - name: stage_custom
     title: zooom
     sprite: {fileID: 21300000, guid: 84c2ec69545474a1688f415484a7acbe, type: 3}
