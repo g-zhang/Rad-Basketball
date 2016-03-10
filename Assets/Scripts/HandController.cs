@@ -10,6 +10,8 @@ public class HandController : MonoBehaviour {
     [Header("Config")]
     public float HandMoveDistanceMult = .5f;
     public GameObject parentPlayerObj;
+	public AudioClip charge;
+	public AudioClip shoot;
 
     [Header("Status")]
     public bool useMouse = false;
@@ -128,12 +130,17 @@ public class HandController : MonoBehaviour {
             gameObject.GetComponent<Collider2D>().enabled = true;
         }
 
+		if (shotCharge != 0) 
+			GetComponent<AudioSource> ().enabled = true;
+		else
+			GetComponent<AudioSource> ().enabled = false;
+			
+
         getHandPosition();
         if (canHold()) {
             holdBall();
         }
 
-        //temp way to let go of the ball until we decide on how to throw the ball and other physics
         if (hasBall)
         {
             if (DisarmControl())
@@ -161,6 +168,8 @@ public class HandController : MonoBehaviour {
             else if (shotCharge > 0 && !DisarmControl())
             {
                 throwBall(rstickDir);
+
+
             }
 
         } else
@@ -179,15 +188,6 @@ public class HandController : MonoBehaviour {
             }
 
             ball = other.gameObject;
-
-            /*
-            if(ball.GetComponent<BallController>().owner != null && ball.GetComponent<BallController>().owner != this.gameObject)
-            {
-                HandController prevowner = ball.GetComponent<BallController>().owner.GetComponent<HandController>();
-                prevowner.hasBall = false;
-                prevowner.ball = null;
-            }
-            */
 
             if (ball.GetComponent<BallController>().owner == null) {
                 ball.GetComponent<BallController>().owner = this.gameObject;
