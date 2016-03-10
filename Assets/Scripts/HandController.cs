@@ -100,7 +100,7 @@ public class HandController : MonoBehaviour {
 		if (shotCharge < 0.2f)
 			return 5;
 		else
-			return shotCharge > 1 ? 20 : shotCharge * 25;
+			return shotCharge > 1 ? 25 : shotCharge * 25;
     }
 
     public void disownBall()
@@ -161,7 +161,7 @@ public class HandController : MonoBehaviour {
                 }
                 powerBar.transform.localScale = new Vector3(powerBar.transform.localScale.x,
                                                 powerBar.transform.localScale.y,
-                                                computePower() * .25f);
+                                                computePower() * .5f);
             }
             else if (shotCharge > 0 && !DisarmControl())
             {
