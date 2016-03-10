@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using InControl;
 
 public class StageSelectController : MonoBehaviour {
 
@@ -22,6 +23,7 @@ public class StageSelectController : MonoBehaviour {
 
     private GameObject[] cursorCorners;
     private GameObject[] stageItems;
+    private bool[] xReset;
 
     void Awake()
     {
@@ -58,23 +60,51 @@ public class StageSelectController : MonoBehaviour {
             cursorCorners[i] = Instantiate<GameObject>(cursorCornerPrefab);
             cursorCorners[i].transform.rotation = Quaternion.Euler(new Vector3(0, 1, 90 * i));
         }
+
+        xReset = new bool[InputManager.Devices.Count];
+        for (int i = 0; i < xReset.Length; i++) {
+            xReset[i] = false;
+        }
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        bool xboxLeft = false;
+        bool xboxRight = false;
+        bool xboxMenu = false;
+        for (int i = 0; i < InputManager.Devices.Count; ++i) {
+            InputDevice device = InputManager.Devices[i];
+
+            if (device.Direction.X < -0.9f && !xReset[i]) {
+                xboxLeft = true;
+                xReset[i] = true;
+            } else if (device.Direction.X > 0.9f && !xReset[i]) {
+                xboxRight = true;
+                xReset[i] = true;
+            }
+
+            if (device.Direction.X < 0.1 && device.Direction.X > -0.1) {
+                xReset[i] = false;
+            }
+
+            if (device.MenuWasPressed || device.Action1) {
+                xboxMenu = true;
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftArrow) || xboxLeft)
         {
             mod++;
             MoveLeft();
         }
 
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKeyDown(KeyCode.RightArrow) || xboxRight)
         {
             mod++;
             MoveRight();
         }
 
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Return) || xboxMenu)
         {
             Select();
         }

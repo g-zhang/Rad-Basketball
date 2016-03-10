@@ -9,3 +9,5 @@ EditorBuildSettings:
     path: Assets/Scenes/stage_select.unity
   - enabled: 1
     path: Assets/Scenes/stage_custom.unity
+  - enabled: 1
+    path: Assets/Scenes/stage_ice.unity
