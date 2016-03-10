@@ -1627,7 +1627,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 493870, guid: d2def978f996041388d6df653f9e0093, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -5.8199997
+      value: -3.5
       objectReference: {fileID: 0}
     - target: {fileID: 493870, guid: d2def978f996041388d6df653f9e0093, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1656,15 +1656,19 @@ Prefab:
     - target: {fileID: 21298978, guid: d2def978f996041388d6df653f9e0093, type: 2}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: cd0276d4cf53d4d5486b6f0304a6ee5d,
+      objectReference: {fileID: 21300000, guid: 07cf806af0a5e46a0a8664e45ec61319,
         type: 3}
     - target: {fileID: 493870, guid: d2def978f996041388d6df653f9e0093, type: 2}
       propertyPath: m_LocalScale.x
-      value: 3.7
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 153158, guid: d2def978f996041388d6df653f9e0093, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 493870, guid: d2def978f996041388d6df653f9e0093, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d2def978f996041388d6df653f9e0093, type: 2}
