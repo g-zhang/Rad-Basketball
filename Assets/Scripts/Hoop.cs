@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEditor;
 
 public class Hoop : MonoBehaviour {
 
@@ -46,18 +47,37 @@ public class Hoop : MonoBehaviour {
 		ball.transform.position = new Vector2 (0, -1);
 		ball.GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
 
+
+		//reset positions
 		GameObject player;
+		string cur_stage = EditorApplication.currentScene.ToString ();
+
 		player = GameObject.Find ("Player_Dog");
-		player.transform.localPosition = new Vector2 (7.75f, -5.2f);
+		if (cur_stage == "Assets/Scenes/stage_ice.unity")
+			player.transform.localPosition = new Vector2 (3.0f, 0.0f);
+		else
+			player.transform.localPosition = new Vector2 (7.75f, -5.2f);
 		player.GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
+
 		player = GameObject.Find ("Player_Bunny");
-		player.transform.localPosition = new Vector2(9.4f, -5);
+		if (cur_stage == "Assets/Scenes/stage_ice.unity")
+			player.transform.localPosition = new Vector2 (5.0f, 0.0f);
+		else
+			player.transform.localPosition = new Vector2(9.4f, -5);
 		player.GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
+
 		player = GameObject.Find ("Player_Cat");
-		player.transform.localPosition = new Vector2(-20.2f, -5);
+		if (cur_stage == "Assets/Scenes/stage_ice.unity")
+			player.transform.localPosition = new Vector2 (-15.0f, 0.0f);
+		else
+			player.transform.localPosition = new Vector2(-20.2f, -5);
 		player.GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
+
 		player = GameObject.Find ("Player_Bird");
-		player.transform.localPosition = new Vector2(-22, -5);
+		if (cur_stage == "Assets/Scenes/stage_ice.unity")
+			player.transform.localPosition = new Vector2 (-17.0f, 0.0f);
+		else
+			player.transform.localPosition = new Vector2(-22, -5);
 		player.GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
 	}
 }
