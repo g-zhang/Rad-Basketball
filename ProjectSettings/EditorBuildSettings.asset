@@ -8,6 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/stage_select.unity
   - enabled: 1
-    path: Assets/Scenes/stage_custom.unity
+    path: Assets/Scenes/stage_flat.unity
   - enabled: 1
     path: Assets/Scenes/stage_ice.unity
+  - enabled: 1
+    path: Assets/Scenes/stage_custom.unity
+  - enabled: 1
+    path: Assets/Scenes/stage_trampolines.unity

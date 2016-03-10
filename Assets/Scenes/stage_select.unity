@@ -644,18 +644,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stages:
-  - name: stage_custom
-    title: ddogee
-    sprite: {fileID: 21300000, guid: 84c2ec69545474a1688f415484a7acbe, type: 3}
-  - name: stage_custom
-    title: cat
-    sprite: {fileID: 21300000, guid: 84c2ec69545474a1688f415484a7acbe, type: 3}
+  - name: stage_flat
+    title: flat
+    sprite: {fileID: 21300000, guid: 28c5799c0d82c4712b0f957b676670a2, type: 3}
   - name: stage_ice
-    title: stage_ice
+    title: ice
     sprite: {fileID: 21300000, guid: 4964b1f438aa141a6950727d6bbda1d9, type: 3}
   - name: stage_custom
-    title: zooom
+    title: ramps
     sprite: {fileID: 21300000, guid: 84c2ec69545474a1688f415484a7acbe, type: 3}
+  - name: stage_trampolines
+    title: trampolines
+    sprite: {fileID: 21300000, guid: e59eeebbe8c024b519025a87109f9ef4, type: 3}
   stageItemPrefab: {fileID: 103140, guid: 785b2f05b9dac46548f98aed9b9dfd34, type: 2}
   cursorCornerPrefab: {fileID: 147422, guid: 9662c6866fcde491689746cae5948553, type: 2}
   text: {fileID: 187945851}
