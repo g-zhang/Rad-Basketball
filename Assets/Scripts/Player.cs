@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
 	private HandController Hand;
 
 	private int groundLayerMask;
-	private int wallLayerMask;
+	//private int wallLayerMask;
 
 	private bool double_jump = false;
 	private bool double_jumping = false;
@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
 		controller = new XBoxController(number);
 
 		groundLayerMask = LayerMask.GetMask("Ground");
-		wallLayerMask = LayerMask.GetMask("Wall");
+		//wallLayerMask = LayerMask.GetMask("Wall");
 
 		body = GetComponent<Rigidbody2D>();
 	}
@@ -44,7 +44,6 @@ public class Player : MonoBehaviour
 
 	void Update()
 	{
-		controller.InputUpdate();
 		controller.useKeyboard = useKeyboardAndMouse;
 		Hand.useMouse = useKeyboardAndMouse;
 
@@ -57,7 +56,7 @@ public class Player : MonoBehaviour
 		}
 
         if (controller.Select()) {
-            Application.LoadLevel("stage_select");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("stage_select");
         }
 
 		if (double_jump) {
@@ -72,12 +71,13 @@ public class Player : MonoBehaviour
 
 	void FixedUpdate()
 	{
-		Vector2 velocity = body.velocity;
+        controller.InputUpdate();
+        Vector2 velocity = body.velocity;
 		Vector2 flick = controller.Flick();
 
 		if (flick != Vector2.zero)
 		{
-			bool verticalFlick = Mathf.Abs(flick.y) >= Mathf.Abs(flick.x);
+			//bool verticalFlick = Mathf.Abs(flick.y) >= Mathf.Abs(flick.x);
 
 			if (Grounded ())
 				double_jumping = false;

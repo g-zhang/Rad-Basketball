@@ -21,7 +21,7 @@ public class HandController : MonoBehaviour {
     public GameObject ball = null;
     public float shotCharge = 0;
     public float handCollCooldown = 0f;
-    Vector3 defaultPos;
+    //Vector3 defaultPos;
 
     // VJR(Virtual Joystick Region) Sample 
     // http://forum.unity3d.com/threads/vjr-virtual-joystick-region-sample.116076/
@@ -48,7 +48,7 @@ public class HandController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        defaultPos = gameObject.transform.localPosition;
+        //defaultPos = gameObject.transform.localPosition;
         gameObject.transform.position = parentPlayerObj.transform.position + new Vector3(0, 0, 0);
         controls = parentPlayerObj.GetComponent<Player>().GetXBoxController();
         powerBar = transform.Find("PowerBar").gameObject;
@@ -124,7 +124,7 @@ public class HandController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if(handCollCooldown > 0)
+        if (handCollCooldown > 0)
             handCollCooldown -= Time.deltaTime;
         else
             gameObject.GetComponent<Collider2D>().enabled = true;
@@ -133,8 +133,8 @@ public class HandController : MonoBehaviour {
 			GetComponent<AudioSource> ().enabled = true;
 		else
 			GetComponent<AudioSource> ().enabled = false;
-			
 
+        controls.Vibrate(0f);
         getHandPosition();
         if (canHold())
             holdBall();
@@ -162,6 +162,7 @@ public class HandController : MonoBehaviour {
                 powerBar.transform.localScale = new Vector3(powerBar.transform.localScale.x,
                                                 powerBar.transform.localScale.y,
                                                 computePower() * .5f);
+                controls.Vibrate(0f, computePower() / 25f);
             }
             else if (shotCharge > 0 && !DisarmControl())
             {

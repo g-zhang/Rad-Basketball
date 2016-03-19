@@ -74,6 +74,7 @@ public class StageSelectController : MonoBehaviour {
         bool xboxMenu = false;
         for (int i = 0; i < InputManager.Devices.Count; ++i) {
             InputDevice device = InputManager.Devices[i];
+            device.Vibrate(0f);
 
             if (device.Direction.X < -0.9f && !xReset[i]) {
                 xboxLeft = true;
@@ -87,7 +88,7 @@ public class StageSelectController : MonoBehaviour {
                 xReset[i] = false;
             }
 
-            if (device.MenuWasPressed || device.Action1) {
+            if (device.Action1) {
                 xboxMenu = true;
             }
         }
@@ -160,7 +161,7 @@ public class StageSelectController : MonoBehaviour {
     private void Select()
     {
         Stage stage = stages[cursorPosition];
-        Application.LoadLevel(stage.name);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(stage.name);
     }
 
     private void UpdateText()

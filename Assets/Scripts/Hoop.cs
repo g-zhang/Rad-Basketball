@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEditor;
 
 public class Hoop : MonoBehaviour {
 
@@ -39,7 +38,14 @@ public class Hoop : MonoBehaviour {
 		// boom boom
 		Instantiate (explosion, ball.transform.position, Quaternion.identity);
 
-		HandController[] hands = FindObjectsOfType(typeof(HandController)) as HandController[];
+        // vibrate
+        Player[] players = FindObjectsOfType(typeof(Player)) as Player[];
+        foreach (Player p in players)
+        {
+            p.GetXBoxController().VibrateFor(1f, 1.5f);
+        }
+
+        HandController[] hands = FindObjectsOfType(typeof(HandController)) as HandController[];
 		foreach (HandController hand in hands)
 			hand.hasBall = false;
 
@@ -50,31 +56,32 @@ public class Hoop : MonoBehaviour {
 
 		//reset positions
 		GameObject player;
-		string cur_stage = EditorApplication.currentScene.ToString ();
+        string cur_stage = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+        print(cur_stage);
 
-		player = GameObject.Find ("Player_Dog");
-		if (cur_stage == "Assets/Scenes/stage_ice.unity")
+        player = GameObject.Find ("Player_Dog");
+		if (cur_stage == "stage_ice")
 			player.transform.localPosition = new Vector2 (3.0f, 0.0f);
 		else
 			player.transform.localPosition = new Vector2 (7.75f, -5.2f);
 		player.GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
 
 		player = GameObject.Find ("Player_Bunny");
-		if (cur_stage == "Assets/Scenes/stage_ice.unity")
+		if (cur_stage == "stage_ice")
 			player.transform.localPosition = new Vector2 (5.0f, 0.0f);
 		else
 			player.transform.localPosition = new Vector2(9.4f, -5);
 		player.GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
 
 		player = GameObject.Find ("Player_Cat");
-		if (cur_stage == "Assets/Scenes/stage_ice.unity")
+		if (cur_stage == "stage_ice")
 			player.transform.localPosition = new Vector2 (-15.0f, 0.0f);
 		else
 			player.transform.localPosition = new Vector2(-20.2f, -5);
 		player.GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
 
 		player = GameObject.Find ("Player_Bird");
-		if (cur_stage == "Assets/Scenes/stage_ice.unity")
+		if (cur_stage == "stage_ice")
 			player.transform.localPosition = new Vector2 (-17.0f, 0.0f);
 		else
 			player.transform.localPosition = new Vector2(-22, -5);

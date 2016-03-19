@@ -19,7 +19,7 @@ public class CenterCamera : MonoBehaviour {
     Camera theCamera;
     float height = 1.0f;
     float avgDistance;
-    float distance = 0.0f;                    // Default Distance 
+    //float distance = 0.0f;                    // Default Distance 
     float offset;
 
 

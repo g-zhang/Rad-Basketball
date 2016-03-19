@@ -14,6 +14,10 @@ public class XBoxController
     public float flickScale = 0.23f;
     public bool useKeyboard = false;
 
+    //used for vibrationFor
+    private float vibrateTime = 0f;
+    private float vibrateInt = 0f;
+
     public XBoxController(int playerNumber)
     {
         this.playerNumber = playerNumber;
@@ -23,6 +27,11 @@ public class XBoxController
     public void InputUpdate()
     {
         inputDevice = (InputManager.Devices.Count > playerNumber) ? InputManager.Devices[playerNumber] : null;
+        if(vibrateTime > 0f)
+        {
+            vibrateTime -= Time.deltaTime;
+            Vibrate(vibrateInt);
+        }
     }
 
     public Vector2 LeftStick()
@@ -151,5 +160,27 @@ public class XBoxController
         {
             return Vector2.zero;
         }
+    }
+
+    public void Vibrate(float intensity)
+    {
+        if(!useKeyboard && inputDevice != null)
+        {
+            inputDevice.Vibrate(intensity);
+        }
+    }
+
+    public void Vibrate(float left, float right)
+    {
+        if (!useKeyboard && inputDevice != null)
+        {
+            inputDevice.Vibrate(left, right);
+        }
+    }
+
+    public void VibrateFor(float intensity, float time)
+    {
+        vibrateTime = time;
+        vibrateInt = intensity;
     }
 }

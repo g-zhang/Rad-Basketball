@@ -114,8 +114,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   logDebugInfo: 0
   invertYAxis: 0
-  enableXInput: 0
-  useFixedUpdate: 0
+  enableXInput: 1
+  useFixedUpdate: 1
   dontDestroyOnLoad: 0
   customProfiles: []
 --- !u!4 &59263629
